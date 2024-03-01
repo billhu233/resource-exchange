@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: auth-server
+
+  profiles:
+    active: local
+
+server:
+  port: 10086
