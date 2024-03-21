@@ -1,6 +1,6 @@
 package exchange.mapper;
 
-import exchange.entity.UserPrivacyInfo;
+import exchange.domain.entity.UserPrivacyInfo;
 import exchange.mybatis.core.mapper.BaseMapperX;
 import org.apache.ibatis.annotations.Mapper;
 

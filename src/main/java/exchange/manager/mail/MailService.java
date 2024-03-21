@@ -1,5 +1,6 @@
 package exchange.manager.mail;
 
+import exchange.common.enums.SendMailTypeEnum;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,13 @@ public class MailService {
     @Value("${spring.mail.username}")
     private String form;
 
-    public Boolean sendMimeMail(String mail) {
+    public Boolean sendMimeMail(SendMailTypeEnum typeEnum, String mail, String verifyCode) {
         SimpleMailMessage smm = new SimpleMailMessage();
-        smm.setSubject("测试邮件");
+        smm.setSubject(typeEnum.getValue().equals(SendMailTypeEnum.LOGIN.getValue()) ? "登录验证码" : "注册验证码");
         smm.setFrom(form);
         smm.setSentDate(new Date());
         smm.setTo(mail);
-        smm.setText("简单的邮件正文");
+        smm.setText("您本次的验证码是：" + verifyCode);
         mailSender.send(smm);
         return true;
     }

@@ -1,7 +1,7 @@
 package exchange.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import exchange.entity.UserLikeWeakRecord;
+import exchange.domain.entity.UserLikeWeakRecord;
 
 /**
  * <p>

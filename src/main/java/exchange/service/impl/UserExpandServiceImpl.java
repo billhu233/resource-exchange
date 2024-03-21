@@ -1,7 +1,7 @@
 package exchange.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import exchange.entity.UserExpand;
+import exchange.domain.entity.UserExpand;
 import exchange.mapper.UserExpandMapper;
 import exchange.service.IUserExpandService;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package exchange.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import exchange.entity.ExchangeLog;
+import exchange.domain.entity.ExchangeLog;
 
 /**
  * <p>

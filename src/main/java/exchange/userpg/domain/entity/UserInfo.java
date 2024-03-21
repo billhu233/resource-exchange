@@ -1,4 +1,4 @@
-package exchange.entity;
+package exchange.userpg.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;

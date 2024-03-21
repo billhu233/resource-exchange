@@ -1,6 +1,6 @@
 package exchange.mapper;
 
-import exchange.entity.ReturnPointApply;
+import exchange.domain.entity.ReturnPointApply;
 import exchange.mybatis.core.mapper.BaseMapperX;
 import org.apache.ibatis.annotations.Mapper;
 

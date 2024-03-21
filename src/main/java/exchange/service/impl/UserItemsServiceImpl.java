@@ -1,7 +1,7 @@
 package exchange.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import exchange.entity.UserItems;
+import exchange.domain.entity.UserItems;
 import exchange.mapper.UserItemsMapper;
 import exchange.service.IUserItemsService;
 import org.springframework.stereotype.Service;

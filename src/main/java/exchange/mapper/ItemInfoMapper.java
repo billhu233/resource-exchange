@@ -1,6 +1,6 @@
 package exchange.mapper;
 
-import exchange.entity.ItemInfo;
+import exchange.domain.entity.ItemInfo;
 import exchange.mybatis.core.mapper.BaseMapperX;
 import org.apache.ibatis.annotations.Mapper;
 

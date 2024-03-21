@@ -16,6 +16,10 @@ spring:
     username: root
     password: root
 
+  custom:
+    ipAddress: ipAddress
+    outTime: outTime
+
 sa-token:
   # token名称 (同时也是cookie名称)
   token-name: Authorization

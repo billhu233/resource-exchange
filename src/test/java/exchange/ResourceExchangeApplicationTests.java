@@ -1,5 +1,6 @@
 package exchange;
 
+import exchange.common.enums.SendMailTypeEnum;
 import exchange.manager.mail.MailService;
 import exchange.manager.userinfomanage.UserInfoManage;
 import org.assertj.core.util.Lists;
@@ -25,16 +26,7 @@ class ResourceExchangeApplicationTests {
 
     @Test
     public void sendMailTest() {
-        mailService.sendMimeMail("153640709@qq.com");
+        mailService.sendMimeMail(SendMailTypeEnum.REGISTER, "153640709@qq.com", "川A·9962kM");
     }
 
-    @Test
-    public void getVerifyCode() throws UnsupportedEncodingException {
-        List<String> codes = Lists.newArrayList();
-        for (int i = 0; i < 1000; i++)
-        {
-            codes.add(userInfoManage.getVerifyCode());
-        }
-        String h = userInfoManage.getVerifyCode();
-    }
 }

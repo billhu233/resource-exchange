@@ -1,5 +1,6 @@
 package exchange.manager.userinfomanage;
 
+import exchange.common.enums.SendMailTypeEnum;
 import exchange.manager.mail.MailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +22,10 @@ public class UserInfoManage {
     @Autowired
     private MailService mailService;
 
-    public String getVerifyCode() {
-        return generateRandomCode();
+    public String sendMailAndReturnCode(SendMailTypeEnum typeEnum, String sendToMail) {
+        String code = generateRandomCode();
+        mailService.sendMimeMail(typeEnum, sendToMail, code );
+        return code;
     }
 
     /**

@@ -1,6 +1,6 @@
 package exchange.service.impl;
 
-import exchange.entity.ExchangeLog;
+import exchange.domain.entity.ExchangeLog;
 import exchange.mapper.ExchangeLogMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import exchange.service.IExchangeLogService;

@@ -1,6 +1,6 @@
 package exchange.mapper;
 
-import exchange.entity.UserLikeWeakRecord;
+import exchange.domain.entity.UserLikeWeakRecord;
 import exchange.mybatis.core.mapper.BaseMapperX;
 import org.apache.ibatis.annotations.Mapper;
 

@@ -1,6 +1,6 @@
 package exchange.service.impl;
 
-import exchange.entity.ExchangePointApply;
+import exchange.domain.entity.ExchangePointApply;
 import exchange.mapper.ExchangePointApplyMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import exchange.service.IExchangePointApplyService;

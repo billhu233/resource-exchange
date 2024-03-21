@@ -1,7 +1,7 @@
 package exchange.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import exchange.entity.UserLikeWeakRecord;
+import exchange.domain.entity.UserLikeWeakRecord;
 import exchange.mapper.UserLikeWeakRecordMapper;
 import exchange.service.IUserLikeWeakRecordService;
 import org.springframework.stereotype.Service;

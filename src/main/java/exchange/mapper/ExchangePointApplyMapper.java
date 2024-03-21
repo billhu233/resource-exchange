@@ -1,6 +1,6 @@
 package exchange.mapper;
 
-import exchange.entity.ExchangePointApply;
+import exchange.domain.entity.ExchangePointApply;
 import exchange.mybatis.core.mapper.BaseMapperX;
 import org.apache.ibatis.annotations.Mapper;
 
