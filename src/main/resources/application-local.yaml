@@ -19,6 +19,7 @@ spring:
   custom:
     ipAddress: ipAddress
     outTime: outTime
+    verifyCode: verifyCode
 
 sa-token:
   # token名称 (同时也是cookie名称)

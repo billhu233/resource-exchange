@@ -8,13 +8,17 @@ import lombok.Getter;
  *     全局错误码枚举
  *     0-999 系统异常编码保留
  * </p>
- *
- * @author sunql
- * @since 2023-10-21
  */
 @Getter
 @AllArgsConstructor
 public enum ResultCode implements IResultCode {
+
+	// ============用户注册登录相关 1_001_001_000 =======
+	EMAIL_EXISTS(1_001_001_001, "邮箱已存在"),
+	VERIFY_CODE_NOT_EXISTS(1_001_001_002, "请发送验证码"),
+	VERIFY_CODE_ERROR(1_001_001_003, "验证码不正确"),
+	PASSWORD_ERROR(1_001_001_004, "密码错误"),
+	USER_NOT_EXISTS(1_001_001_005, "用户不存在"),
 
 	// ========== 客户端错误段 ==========
 	SUCCESS(0, "操作成功"),

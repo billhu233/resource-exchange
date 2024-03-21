@@ -22,6 +22,12 @@ public class UserInfo extends BaseDO {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 是否系统管理员
+     */
+    @TableField("is_administrator")
+    private String isAdministrator;
+
+    /**
      * 用户名称
      */
     @TableField("user_name")

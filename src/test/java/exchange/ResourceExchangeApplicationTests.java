@@ -1,15 +1,11 @@
 package exchange;
 
 import exchange.common.enums.SendMailTypeEnum;
-import exchange.manager.mail.MailService;
-import exchange.manager.userinfomanage.UserInfoManage;
-import org.assertj.core.util.Lists;
+import exchange.userpg.manager.MailService;
+import exchange.userpg.manager.UserInfoManage;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 @SpringBootTest
 class ResourceExchangeApplicationTests {

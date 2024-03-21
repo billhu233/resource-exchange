@@ -1,7 +1,11 @@
 package exchange.userpg.controller;
 
 import exchange.common.enums.SendMailTypeEnum;
-import exchange.manager.userinfomanage.UserInfoManage;
+import exchange.common.result.R;
+import exchange.userpg.domain.vo.req.UserLoginRequest;
+import exchange.userpg.domain.vo.resp.LoginResponse;
+import exchange.userpg.manager.UserInfoManage;
+import exchange.userpg.domain.vo.req.UserRegisterRequest;
 import exchange.userpg.domain.vo.req.VerifyCodeRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +29,24 @@ public class UserInfoController {
      * 获取验证码
      */
     @PostMapping("/getVerifyCode")
-    public String getVerifyCode(VerifyCodeRequest request) {
-        return userInfoManage.sendMailAndReturnCode(SendMailTypeEnum.valueOf(request.getType()), request.getEmail());
+    public R<String> getVerifyCode(VerifyCodeRequest request) {
+        return R.success(userInfoManage.sendMailAndReturnCode(SendMailTypeEnum.valueOf(request.getType()), request.getEmail()));
     }
 
-//    public Boolean
+    /**
+     * 用户注册
+     */
+    @PostMapping("/register")
+    public R<Boolean> userRegistration(UserRegisterRequest request) {
+        return R.success(userInfoManage.userRegistration(request));
+    }
+
+    /**
+     * 用户登录
+     */
+    @PostMapping("/login")
+    public R<LoginResponse> userLogin(UserLoginRequest request) {
+
+        return R.success();
+    }
 }

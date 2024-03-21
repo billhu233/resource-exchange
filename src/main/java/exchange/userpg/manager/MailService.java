@@ -1,4 +1,4 @@
-package exchange.manager.mail;
+package exchange.userpg.manager;
 
 import exchange.common.enums.SendMailTypeEnum;
 import lombok.RequiredArgsConstructor;

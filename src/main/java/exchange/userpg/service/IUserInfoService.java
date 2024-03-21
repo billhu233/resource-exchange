@@ -1,4 +1,4 @@
-package exchange.service;
+package exchange.userpg.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import exchange.userpg.domain.entity.UserInfo;
@@ -12,5 +12,4 @@ import exchange.userpg.domain.entity.UserInfo;
  * @since 2024-02-29
  */
 public interface IUserInfoService extends IService<UserInfo> {
-
 }
