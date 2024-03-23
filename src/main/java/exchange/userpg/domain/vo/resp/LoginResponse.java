@@ -1,7 +1,7 @@
 package exchange.userpg.domain.vo.resp;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 /*
@@ -10,7 +10,7 @@ import lombok.Data;
  * @since 2024/3/6 10:58
  */
 @Data
-@AllArgsConstructor
+@Builder
 public class LoginResponse {
 
     @Schema(description = "访问token")

@@ -46,7 +46,6 @@ public class UserInfoController {
      */
     @PostMapping("/login")
     public R<LoginResponse> userLogin(UserLoginRequest request) {
-
-        return R.success();
+        return R.success(userInfoManage.userLogin(request));
     }
 }
