@@ -2,9 +2,8 @@ package exchange.userpg.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import exchange.mybatis.dataobject.BaseDO;
-import lombok.Getter;
-import lombok.Setter;
+import exchange.framework.mybatis.dataobject.BaseDO;
+import lombok.Data;
 
 /**
  * <p>
@@ -14,8 +13,7 @@ import lombok.Setter;
  * @author hb
  * @since 2024-02-29
  */
-@Getter
-@Setter
+@Data
 @TableName("UserInfo")
 public class UserInfo extends BaseDO {
 

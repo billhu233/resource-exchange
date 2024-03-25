@@ -1,13 +1,11 @@
 package exchange.userpg.manager;
 
-import cn.dev33.satoken.context.SaHolder;
-import cn.dev33.satoken.context.model.SaStorage;
-import cn.dev33.satoken.stp.SaLoginModel;
 import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import exchange.common.enums.SendMailTypeEnum;
 import exchange.common.exception.ResultCode;
 import exchange.common.exception.utils.AssertUtil;
+import exchange.satoken.LoginHelper;
 import exchange.common.utils.PwdUtil;
 import exchange.common.utils.WebFrameworkUtils;
 import exchange.userpg.convert.UserInfoConvert;
@@ -25,9 +23,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 import java.util.Random;
-
-import static exchange.common.utils.LoginHelper.LOGIN_USER_KEY;
-import static exchange.common.utils.LoginHelper.USER_KEY;
 
 /*
  * @description
@@ -65,15 +60,7 @@ public class UserInfoManage {
         boolean match = Objects.equals(PwdUtil.getPWDStrFromOne2Db(request.getPassword()), userInfo.getPassword());
         AssertUtil.isFalse(match, ResultCode.PASSWORD_ERROR);
 
-        SaStorage storage = SaHolder.getStorage();
-        storage.set(LOGIN_USER_KEY, userInfo);
-        storage.set(USER_KEY, userInfo.getId());
-
-        SaLoginModel model = new SaLoginModel();
-        model.setTimeout(6000);
-
-        StpUtil.login(userInfo.getId(), model.setExtra(USER_KEY, userInfo.getId()));
-        StpUtil.getTokenSession().set(LOGIN_USER_KEY, userInfo);
+        LoginHelper.login(userInfo, 1000L);
 
         WebFrameworkUtils.setLoginUserId(httpServletRequest, userInfo.getUpdaterId());
         return LoginResponse.builder()

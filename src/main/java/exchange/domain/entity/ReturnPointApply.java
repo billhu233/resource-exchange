@@ -2,7 +2,7 @@ package exchange.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import exchange.mybatis.dataobject.BaseDO;
+import exchange.framework.mybatis.dataobject.BaseDO;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;

@@ -20,6 +20,9 @@ public enum ResultCode implements IResultCode {
 	PASSWORD_ERROR(1_001_001_004, "密码错误"),
 	USER_NOT_EXISTS(1_001_001_005, "用户不存在"),
 
+	// ============物品相关 1_001_002_000 =======
+	FILE_CANNOT_NULL(1_001_002_001, "交换物品不能为空"),
+
 	// ========== 客户端错误段 ==========
 	SUCCESS(0, "操作成功"),
 	BAD_REQUEST(400, "请求参数不正确"),

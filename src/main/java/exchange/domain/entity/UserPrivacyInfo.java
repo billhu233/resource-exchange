@@ -2,8 +2,7 @@ package exchange.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import exchange.mybatis.dataobject.BaseDO;
-import java.io.Serializable;
+import exchange.framework.mybatis.dataobject.BaseDO;
 import lombok.Getter;
 import lombok.Setter;
 

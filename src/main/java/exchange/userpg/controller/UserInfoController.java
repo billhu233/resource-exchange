@@ -7,9 +7,7 @@ import exchange.userpg.domain.vo.resp.LoginResponse;
 import exchange.userpg.manager.UserInfoManage;
 import exchange.userpg.domain.vo.req.UserRegisterRequest;
 import exchange.userpg.domain.vo.req.VerifyCodeRequest;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -29,7 +27,7 @@ public class UserInfoController {
      * 获取验证码
      */
     @PostMapping("/getVerifyCode")
-    public R<String> getVerifyCode(VerifyCodeRequest request) {
+    public R<String> getVerifyCode(@RequestBody VerifyCodeRequest request) {
         return R.success(userInfoManage.sendMailAndReturnCode(SendMailTypeEnum.valueOf(request.getType()), request.getEmail()));
     }
 
@@ -37,7 +35,7 @@ public class UserInfoController {
      * 用户注册
      */
     @PostMapping("/register")
-    public R<Boolean> userRegistration(UserRegisterRequest request) {
+    public R<Boolean> userRegistration(@RequestBody UserRegisterRequest request) {
         return R.success(userInfoManage.userRegistration(request));
     }
 
@@ -45,7 +43,7 @@ public class UserInfoController {
      * 用户登录
      */
     @PostMapping("/login")
-    public R<LoginResponse> userLogin(UserLoginRequest request) {
+    public R<LoginResponse> userLogin(@RequestBody UserLoginRequest request) {
         return R.success(userInfoManage.userLogin(request));
     }
 }

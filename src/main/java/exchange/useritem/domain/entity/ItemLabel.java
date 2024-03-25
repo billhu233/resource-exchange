@@ -1,4 +1,4 @@
-package exchange.domain.entity;
+package exchange.useritem.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -8,34 +8,28 @@ import lombok.Setter;
 
 /**
  * <p>
- * 用户赞踩记录表
+ * 物品标签
  * </p>
  *
  * @author hb
- * @since 2024-02-29
+ * @since 2024-03-25
  */
 @Getter
 @Setter
-@TableName("UserLikeWeakRecord")
-public class UserLikeWeakRecord extends BaseDO {
+@TableName("ItemLabel")
+public class ItemLabel extends BaseDO {
 
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 用户id
-     */
-    @TableField("user_id")
-    private Integer userId;
 
     /**
      * 物品id
      */
     @TableField("item_id")
-    private Integer itemId;
+    private Long itemId;
 
     /**
-     * 赞踩类型
+     * 标签
      */
-    @TableField("like_or_weak_type")
-    private Integer likeOrWeakType;
+    @TableField("label_name")
+    private String labelName;
 }

@@ -1,7 +1,7 @@
 package exchange.mapper;
 
 import exchange.domain.entity.ExchangeLog;
-import exchange.mybatis.core.mapper.BaseMapperX;
+import exchange.framework.mybatis.core.mapper.BaseMapperX;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
