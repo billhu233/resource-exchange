@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /*
  * @description
@@ -19,4 +20,6 @@ public class UserItemRequest {
     private BigDecimal itemPoint;
 
     private String description;
+
+    private List<String> itemLabel;
 }

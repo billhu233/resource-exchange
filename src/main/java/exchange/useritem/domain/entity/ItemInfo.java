@@ -31,7 +31,7 @@ public class ItemInfo extends BaseDO {
      * 物品类型
      */
     @TableField("item_type")
-    private Integer itemType;
+    private String itemType;
 
     /**
      * 物品大小

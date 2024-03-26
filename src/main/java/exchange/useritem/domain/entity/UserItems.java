@@ -50,6 +50,12 @@ public class UserItems extends BaseDO {
     private Integer downloadNumber;
 
     /**
+     * 物品状态
+     */
+    @TableField("state")
+    private Integer state;
+
+    /**
      * 物品描述
      */
     @TableField("description")
