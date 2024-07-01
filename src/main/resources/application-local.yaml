@@ -20,6 +20,7 @@ spring:
     ipAddress: ipAddress
     outTime: outTime
     verifyCode: verifyCode
+    emailStr: emailStr
 
 sa-token:
   # token名称 (同时也是cookie名称)
@@ -47,3 +48,15 @@ sa-token:
   token-prefix: "Bearer"
   # jwt秘钥
   jwt-secret-key: resouce-exchange@com.bill
+
+--- #####白名单配置######
+# 不校验白名单
+security:
+  ignore:
+    whites:
+      - /*/admin/getVerifyCode
+
+server:
+  servlet:
+    session:
+      persistent: false

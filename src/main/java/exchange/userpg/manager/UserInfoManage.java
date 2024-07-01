@@ -44,7 +44,10 @@ public class UserInfoManage {
     private HttpServletRequest httpServletRequest;
 
     @Value("verifyCode")
-    private String verifyCode = "verifyCode";
+    private String verifyCode;
+
+    @Value("emailStr")
+    private String emailStr;
 
     /**
      * 登录
@@ -76,6 +79,9 @@ public class UserInfoManage {
         AssertUtil.isTrue(userInfoMapper.selectCount(new LambdaQueryWrapper<UserInfo>().eq(UserInfo::getEmail, request.getEmail())) > 0,
                 ResultCode.EMAIL_EXISTS);
 
+        Object email = httpServletRequest.getSession().getAttribute(emailStr);
+        AssertUtil.isFalse(email.toString().equals(request.getEmail()), ResultCode.VERIFY_CODE_ERROR);
+
         Object codeObj = httpServletRequest.getSession().getAttribute(verifyCode);
         AssertUtil.notNull(codeObj, ResultCode.VERIFY_CODE_NOT_EXISTS);
         AssertUtil.isFalse(codeObj.toString().equals(request.getVerifyCode()), ResultCode.VERIFY_CODE_ERROR);
@@ -87,10 +93,12 @@ public class UserInfoManage {
      * 发送验证码
      */
     public String sendMailAndReturnCode(SendMailTypeEnum typeEnum, String sendToMail) {
-        AssertUtil.isTrue(userInfoMapper.selectCount(new LambdaQueryWrapper<UserInfo>().eq(UserInfo::getEmail, sendToMail)) <= 0,
+        AssertUtil.isTrue(typeEnum.equals(SendMailTypeEnum.LOGIN) &&
+                        userInfoMapper.selectCount(new LambdaQueryWrapper<UserInfo>().eq(UserInfo::getEmail, sendToMail)) <= 0,
                 ResultCode.USER_NOT_EXISTS);
         String code = generateRandomCode();
         httpServletRequest.getSession().setAttribute(verifyCode, code);
+        httpServletRequest.getSession().setAttribute(emailStr, sendToMail);
         mailService.sendMimeMail(typeEnum, sendToMail, code);
         return code;
     }

@@ -2,9 +2,6 @@ package exchange.common.constants;
 
 /**
  * 系统 公用枚举
- *
- * @author sunql
- * @since 2023-10-25
  */
 public interface SystemConstants {
 
@@ -25,27 +22,10 @@ public interface SystemConstants {
      */
     Long ROOT_MENU_ID = 0L;
 
-    String SELECT_LAST_SQL = "limit 1";
-
-    /**
-     * 层级编码长度
-     */
-    String DEFAULT_LONG_NO = "000";
-
-    /**
-     * 默认租户id
-     */
-    String DEFAULT_TENANT = "000000";
-
     /**
      * loginId构造拼接字符串(勿改为其他链接符)
      */
     String LOGIN_ID_JOIN_CODE = "_";
-
-    /**
-     * 施工打卡示例图默认relateId
-     */
-    Long WORKER_PUNCH_CLOCK_EXAMPLE_DEFAULT_ID = 0L;
 
     /**
      * 请求上下文的用户id

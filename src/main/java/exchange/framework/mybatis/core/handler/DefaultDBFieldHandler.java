@@ -16,8 +16,6 @@ import static exchange.common.constants.SystemConstants.DEFAULT_SYSTEM_USER;
  *
  * 如果没有显式的对通用参数进行赋值，这里会对通用参数进行填充、赋值
  *
- * @author sunql
- * @since 2023-10-21
  */
 public class DefaultDBFieldHandler implements MetaObjectHandler {
 
