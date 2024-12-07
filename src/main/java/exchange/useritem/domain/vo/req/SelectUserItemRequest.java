@@ -10,7 +10,6 @@ import lombok.Data;
  * @since 2024/3/6 10:58
  */
 @Data
-@AllArgsConstructor
 public class SelectUserItemRequest extends PageParam {
 
     private String itemName;

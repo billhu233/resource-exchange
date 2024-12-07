@@ -19,6 +19,7 @@ public enum ResultCode implements IResultCode {
 	VERIFY_CODE_ERROR(1_001_001_003, "验证码不正确"),
 	PASSWORD_ERROR(1_001_001_004, "密码错误"),
 	USER_NOT_EXISTS(1_001_001_005, "用户不存在"),
+	PASSWORD_NOT_SAME(1_001_001_006, "两次密码输入不一致"),
 
 	// ============物品相关 1_001_002_000 =======
 	FILE_CANNOT_NULL(1_001_002_001, "交换物品不能为空"),

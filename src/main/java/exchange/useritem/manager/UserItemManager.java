@@ -2,6 +2,7 @@ package exchange.useritem.manager;
 
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.google.common.collect.Lists;
+import exchange.common.enums.StateEnum;
 import exchange.common.exception.ResultCode;
 import exchange.common.exception.utils.AssertUtil;
 import exchange.satoken.LoginHelper;
@@ -16,11 +17,16 @@ import exchange.useritem.mapper.UserItemsMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 /*
@@ -33,11 +39,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserItemManager {
 
+    @Autowired
     private UserItemsMapper userItemsMapper;
 
+    @Autowired
     private ItemInfoMapper itemInfoMapper;
 
+    @Autowired
     private ItemLabelMapper itemLabelMapper;
+
+    private String FILE_DIRECTORY = "D:\\ResourceExchange\\resource-exchange\\src\\main\\resources\\static\\ItemInfo";
 
     /**
      * 上传文件
@@ -57,10 +68,15 @@ public class UserItemManager {
         }
         String fileMd5 = sb.toString();
 
-        ItemInfo itemInfo = UserItemsConvert.INSTANCE.convert(fileName, fileType, fileSize, fileMd5, request.getItemPoint());
+        byte[] bytes = file.getBytes();
+        Path path = Paths.get(FILE_DIRECTORY + File.separator + file.getOriginalFilename());
+        Files.write(path, bytes);
+
+        ItemInfo itemInfo = UserItemsConvert.INSTANCE.convert(fileName, fileType, fileSize, fileMd5, request.getItemPoint(), path.toString());
         itemInfoMapper.insert(itemInfo);
 
-        UserItems userItems = UserItemsConvert.INSTANCE.convert(itemInfo.getId(), LoginHelper.getUserId(), request.getDescription());
+        UserItems userItems = UserItemsConvert.INSTANCE.convert(itemInfo.getId(), LoginHelper.getUserId(),
+                request.getDescription(), StateEnum.ENABLED.getValue());
         userItemsMapper.insert(userItems);
 
         if (CollectionUtils.isNotEmpty(request.getItemLabel())) {

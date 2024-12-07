@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserItemRequest {
 
-    @NotNull(message = "物品交换点书不能为空")
+    @NotNull(message = "物品交换点数不能为空")
     private BigDecimal itemPoint;
 
     private String description;

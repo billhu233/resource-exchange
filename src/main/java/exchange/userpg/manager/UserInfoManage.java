@@ -53,9 +53,10 @@ public class UserInfoManage {
      * 登录
      */
     public LoginResponse userLogin(UserLoginRequest request) {
-        Object codeObj = httpServletRequest.getSession().getAttribute(verifyCode);
-        AssertUtil.notNull(codeObj, ResultCode.VERIFY_CODE_NOT_EXISTS);
-        AssertUtil.isFalse(codeObj.toString().equals(request.getVerifyCode()), ResultCode.VERIFY_CODE_ERROR);
+        // 验证 验证码，开发的时候注释
+//        Object codeObj = httpServletRequest.getSession().getAttribute(verifyCode);
+//        AssertUtil.notNull(codeObj, ResultCode.VERIFY_CODE_NOT_EXISTS);
+//        AssertUtil.isFalse(codeObj.toString().equals(request.getVerifyCode()), ResultCode.VERIFY_CODE_ERROR);
 
         UserInfo userInfo = userInfoMapper.selectOne(new LambdaQueryWrapper<UserInfo>().eq(UserInfo::getEmail, request.getEmail()));
         AssertUtil.notNull(userInfo, ResultCode.USER_NOT_EXISTS);
@@ -64,11 +65,12 @@ public class UserInfoManage {
         AssertUtil.isFalse(match, ResultCode.PASSWORD_ERROR);
 
         LoginHelper.login(userInfo, 1000L);
-
-        WebFrameworkUtils.setLoginUserId(httpServletRequest, userInfo.getUpdaterId());
+        WebFrameworkUtils.setLoginUserId(httpServletRequest, userInfo.getId());
         return LoginResponse.builder()
                 .accessToken(StpUtil.getTokenValue())
-                .userId(userInfo.getId()).userName(userInfo.getUserName())
+                .userId(userInfo.getId())
+                .userName(userInfo.getUserName())
+                .email(userInfo.getEmail())
                 .build();
     }
 
@@ -76,16 +78,20 @@ public class UserInfoManage {
      * 注册
      */
     public Boolean userRegistration(UserRegisterRequest request) {
+        AssertUtil.isFalse(request.getPassword().equals(request.getSecondPassword()), ResultCode.PASSWORD_NOT_SAME);
+
         AssertUtil.isTrue(userInfoMapper.selectCount(new LambdaQueryWrapper<UserInfo>().eq(UserInfo::getEmail, request.getEmail())) > 0,
                 ResultCode.EMAIL_EXISTS);
 
         Object email = httpServletRequest.getSession().getAttribute(emailStr);
+        AssertUtil.notNull(email, ResultCode.VERIFY_CODE_NOT_EXISTS);
         AssertUtil.isFalse(email.toString().equals(request.getEmail()), ResultCode.VERIFY_CODE_ERROR);
 
         Object codeObj = httpServletRequest.getSession().getAttribute(verifyCode);
         AssertUtil.notNull(codeObj, ResultCode.VERIFY_CODE_NOT_EXISTS);
         AssertUtil.isFalse(codeObj.toString().equals(request.getVerifyCode()), ResultCode.VERIFY_CODE_ERROR);
 
+        request.setPassword(PwdUtil.getPWDStrFromOne2Db(request.getPassword()));
         return userInfoMapper.insert(UserInfoConvert.INSTANCE.convert(request)) > 0;
     }
 
@@ -99,7 +105,8 @@ public class UserInfoManage {
         String code = generateRandomCode();
         httpServletRequest.getSession().setAttribute(verifyCode, code);
         httpServletRequest.getSession().setAttribute(emailStr, sendToMail);
-        mailService.sendMimeMail(typeEnum, sendToMail, code);
+// 真实发送验证码，开发的时候注释
+//        mailService.sendMimeMail(typeEnum, sendToMail, code);
         return code;
     }
 

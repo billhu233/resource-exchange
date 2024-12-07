@@ -3,8 +3,9 @@ spring:
   mail:
     # 平台地址， QQ邮箱
     host: smtp.qq.com
+    port: 465
     username: 153640709@qq.com
-    password: kvphukjeomntbiif
+    password: oidzmwyaaxlzbhfa
     default-encoding: UTF-8
     test-connection: true
 
@@ -60,3 +61,7 @@ server:
   servlet:
     session:
       persistent: false
+
+exchange:
+  info:
+    base-package: exchange

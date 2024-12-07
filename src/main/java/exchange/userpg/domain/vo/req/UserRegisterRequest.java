@@ -2,7 +2,6 @@ package exchange.userpg.domain.vo.req;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /*
@@ -11,7 +10,6 @@ import lombok.Data;
  * @since 2024/3/6 10:58
  */
 @Data
-@AllArgsConstructor
 public class UserRegisterRequest {
 
     @NotBlank(message = "发送邮件不能为空")
@@ -20,6 +18,9 @@ public class UserRegisterRequest {
 
     @NotBlank(message = "密码不能为空")
     private String password;
+
+    @NotBlank(message = "二次密码不能为空")
+    private String secondPassword;
 
     @NotBlank(message = "验证码不能为空")
     private String verifyCode;

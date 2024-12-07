@@ -21,4 +21,7 @@ public class LoginResponse {
 
     @Schema(description = "姓名")
     public String userName;
+
+    @Schema(description = "邮箱")
+    public String email;
 }

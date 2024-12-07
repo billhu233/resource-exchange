@@ -84,15 +84,16 @@ public class LoginHelper {
      * 获取用户(多级缓存)
      */
     public static UserInfo getLoginUser() {
-        HttpServletRequest request = ServletUtils.getRequest();
-        if (Objects.nonNull(request)) {
-            String loginId = request.getHeader(REQUEST_LOGIN_USER_ID);
-            return getLoginUser(loginId);
-        }
-
-        log.error("未获取到前登录用户信息");
+//        HttpServletRequest request = ServletUtils.getRequest();
+//        if (Objects.nonNull(request)) {
+//            Object loginId = request.getAttribute(REQUEST_LOGIN_USER_ID);
+//            if (Objects.nonNull(loginId)) {
+//                return getLoginUser(loginId.toString());
+//            }
+//        }
+//        log.error("未获取到前登录用户信息");
 //        throw new Exception("未获取到前登录用户信息");
-        return null;
+        return getSaTokenUser();
     }
 
     /**

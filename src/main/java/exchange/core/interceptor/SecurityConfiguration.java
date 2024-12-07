@@ -3,6 +3,7 @@ package exchange.core.interceptor;
 import cn.dev33.satoken.interceptor.SaInterceptor;
 import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -15,6 +16,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class SecurityConfiguration implements WebMvcConfigurer {
 
+    @Autowired
+    RequestInterceptor requestInterceptor;
+
     /**
      * 注册sa-token的拦截器
      */
@@ -26,9 +30,13 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                             .notMatch("/admin/getVerifyCode")
                             .notMatch("/admin/register")
                             .notMatch("/admin/login")
+                            .notMatch("/itemInfo/**")
                             .check(r -> StpUtil.checkLogin());
                 }))
                 .addPathPatterns("/**");
+
+        registry.addInterceptor(requestInterceptor).addPathPatterns("/**");
     }
+
 
 }

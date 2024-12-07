@@ -8,6 +8,7 @@ import exchange.useritem.domain.vo.req.UserItemRequest;
 import exchange.useritem.domain.vo.resp.UserItemResponse;
 import exchange.useritem.manager.UserItemManager;
 import exchange.useritem.mapper.ItemInfoMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,12 +24,14 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/itemInfo")
 public class ItemInfoController {
 
+    @Autowired
     private UserItemManager userItemManager;
 
+    @Autowired
     private ItemInfoMapper itemInfoMapper;
 
     /**
-     * 列表查询
+     * 我的物品
      */
     @PostMapping("/selectMyItemPage")
     public R<PageResult<UserItemResponse>> getMyItemPage(@RequestBody SelectMyItemRequest request) {
@@ -47,7 +50,7 @@ public class ItemInfoController {
      * 上传文件
      */
     @PostMapping("/uploadItem")
-    public R<Boolean> uploadFile(@RequestParam("file") MultipartFile file, @RequestBody UserItemRequest request) {
+    public R<Boolean> uploadFile(@RequestParam("file") MultipartFile file, @ModelAttribute UserItemRequest request) {
         return R.success(userItemManager.uploadFile(file, request));
     }
 }
